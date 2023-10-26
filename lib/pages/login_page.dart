@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               maxLength: 255,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: 'E-mail',
+                labelText: 'senha',
                 isDense: true,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide(color: Colors.grey[400]!),
@@ -79,30 +79,85 @@ class _LoginPageState extends State<LoginPage> {
                 errorText: loginStore.passwordError,
               ),
               onChanged: (value){loginStore.setPassword(value);
-              }),),],);
-            }),))
-            child: Center(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                  ElevatedButton(
-                      onPressed: (){
-                        Navigator.of(context).pushNamed('/register');
-                      },
-                      child: Padding(padding: const EdgeInsets.all(8.0),
-                      child: Text('acessar',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),)
-                      ,),
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        backgroundColor: Colors.blue,
+              }),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: ElevatedButton(
+                  child: loginStore.loading 
+                 ? Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16.0, bottom: 16.0),
+                      child: const CircularProgressIndicator(
+                        valueColor: 
+                        AlwaysStoppedAnimation(Colors.white),
+                      )
+                 )
+                 : Padding(padding: 
+                  const EdgeInsets.only(
+                      top: 16.0, bottom: 16.0),
+                    child: const Text('entrar',
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    ),
+                ),
+                     style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      backgroundColor: Colors.blue,
                      ),
-                   ),
-              ],),
-            )
-           ),
-);
-}
+                     onPressed: () async {
+                      if (loginStore.isFormValid) {
+                        var login = await loginStore.login();
+                        if (login) {
+                          Navigator.of(context).pushNamed('/home');
+                        }
+                      } else {
+                        loginStore.mostrarInfo('erro ao validar formulário');
+                      }
+                     }),
+                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 3, top: 30),
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        children: [
+                          Text(
+                            'Não tem uma conta? ',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 16,
+                              color: Colors.grey[800],
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Text(
+                              'Cadastre-se',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 16,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/register');
+                          },
+                            ),  
+                      
+                      ],
+                      ),
+                    ),
+              ],
+              );
+            }),
+
+            ),
+            ),
+            ),
+       );
+   }
 }
