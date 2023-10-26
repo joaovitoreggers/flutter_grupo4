@@ -14,6 +14,8 @@ class RegisterPages extends StatefulWidget {
 
 class _RegisterPagesState extends State<RegisterPages> {
 
+  var registerStore = RegisterStore();
+
    @override
    Widget build(BuildContext context) {
        return Scaffold(
