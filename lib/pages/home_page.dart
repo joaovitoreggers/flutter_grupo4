@@ -1,55 +1,37 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter_projeto/models/login_model.dart';
+import 'package:flutter_projeto/models/login_return_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 
-class HomePage extends StatefulWidget {
+class LoginRepository {
 
-  const HomePage({ super.key });
+  Future<bool> login(LoginModel loginModel) async {
+    var uri = "https://erig.dev.br/api/login";
+    var header = {'Content-Type': 'application/json'};
+    var body = loginModel.toJson();
+    try {
+      var response = await http.post(Uri.parse(uri),
+        headers: header, body: body);
+        
+      if (response.statusCode != 200){
+          return false;
+      } 
+      var userReturn = LoginReturnModel.fromJson(response.body);
+      
+      var dataLogin = DateFormat("yyyy-MM-dd hh:mm:ss").parse(DateTime.now().toString());
 
-  @override
-  State<HomePage> createState() => _HomePageState();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setInt('userId', userReturn.userId!);
+      prefs.setString('userName', userReturn.userName!);
+      prefs.setString('userEmail', userReturn.userEmail!);
+      prefs.setString('token', userReturn.token!);
+      prefs.setString('dataLogin', dataLogin.toString());
+
+      return true;
+    } catch (e) {
+       throw Exception('Falha ao tentar conectar ao servidor');
 }
-
-class _HomePageState extends State<HomePage> {
-
-   @override
-   Widget build(BuildContext context) {
-       return Scaffold(
-           appBar: AppBar(title: const Text('home page'),),
-           body: SingleChildScrollView(
-            child: Center(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              SizedBox(
-                height: 60,
-                width: 200,
-                child: Image.asset('assets/images/rotary.jpg'),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              SizedBox(
-                height: 60,
-                width: 200,
-                child: Image.asset('assets/images/aca.jpg'),
-              ),
-              const SizedBox(height: 5),
-              SizedBox(
-                height: 60,
-                width: 200,
-                child: Image.asset('assets/images/isepe1.jpg'),
-              ),
-              const SizedBox(height: 5,),
-              SizedBox(
-                height: 60,
-                width: 200,
-                child: Image.asset('assets/images/ads.jpg'),
-                     ),
-                    ],
-                   ),
-                 ),
-       ),
-   );
 }
 }
