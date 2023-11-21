@@ -72,5 +72,5 @@ class PessoaModel {
   @override
   String toString() {
     return 'PessoaModel(id: $id, nome: $nome, doc: $doc, fone1: $fone1, fone2: $fone2, endereco: $endereco, uf: $uf, municipio: $municipio, email: $email, localTrabalho: $localTrabalho, beneficiario: $beneficiario, idUser: $idUser)';
-}
+  }
 }

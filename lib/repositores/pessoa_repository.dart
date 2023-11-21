@@ -1,9 +1,10 @@
 import 'dart:convert';
+
 import 'package:flutter_projeto/models/pessoa_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class PessoaRepository {
   Future<bool> gravar(PessoaModel pessoaModel) async {
@@ -55,6 +56,6 @@ class PessoaRepository {
 
     } catch (e) {
        throw Exception('Falha ao tentar conectar ao servidor');
-}
-}
+    }
+  }
 }

@@ -73,22 +73,22 @@ class _SplashPageState extends State<SplashPage> {
                 SizedBox(
                   height: 80,
                   width: 180,
-                  child: Image.asset('assets/images/rotary.png'),
+                  child: Image.asset('assets/images/rotary.jpg'),
                 ),
                 SizedBox(
                   height: 120,
                   width: 150,
-                  child: Image.asset('assets/images/aca.png'),
+                  child: Image.asset('assets/images/aca.jpg'),
                 ),
                 SizedBox(
                   height: 150,
                   width: 200,
-                  child: Image.asset('assets/images/isepe.png'),
+                  child: Image.asset('assets/images/isepe.jpg'),
                 ),
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset('assets/images/ads.png'),
+                  child: Image.asset('assets/images/ads.jpg'),
                 ),
               ],
             ),

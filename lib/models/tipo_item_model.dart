@@ -1,11 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class TipoItemModel {
   int? id;
   String? descricao;
   int? prazoDevolucao;
-
+  
   TipoItemModel({
     this.id,
     this.descricao,
@@ -16,15 +17,15 @@ class TipoItemModel {
     return <String, dynamic>{
       'id': id,
       'descricao': descricao,
-      'prazoDevolucao': prazoDevolucao,
+      'prazo_devolucao': prazoDevolucao,
     };
   }
 
   factory TipoItemModel.fromMap(Map<String, dynamic> map) {
     return TipoItemModel(
-      id: map['id'] != null ? map['id'] as int : null,
-      descricao: map['descricao'] != null ? map['descricao'] as String : null,
-      prazoDevolucao: map['prazoDevolucao'] != null ? map['prazoDevolucao'] as int : null,
+      id: map['id'] ?? 0,
+      descricao: map['descricao'] ?? '',
+      prazoDevolucao: map['prazo_devolucao'] ?? 0
     );
   }
 
@@ -34,5 +35,4 @@ class TipoItemModel {
 
   @override
   String toString() => 'TipoItemModel(id: $id, descricao: $descricao, prazoDevolucao: $prazoDevolucao)';
-
 }

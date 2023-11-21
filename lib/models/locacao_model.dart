@@ -1,79 +1,61 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class LocacaoModel {
   int? id;
-  int?idItem;
+  int? idItem;
   int? idPessoa;
+  int? idUser;
   String? nome;
   String? descricao;
-  String?dataReserva;
+  String? dataReserva;
   String? dataLocacao;
   String? dataRetorno;
   String? observacao;
-  String? nomeBanaficiaro;
-  int? idUser;
+  String? nomeBeneficiario;
+
   LocacaoModel({
     this.id,
+    this.idItem,
     this.idPessoa,
+    this.idUser,
     this.nome,
     this.descricao,
+    this.dataReserva,
     this.dataLocacao,
     this.dataRetorno,
     this.observacao,
-    this.nomeBanaficiaro,
-    this.idUser, required String dataReserva, int? idItem,
+    this.nomeBeneficiario,
   });
 
-  LocacaoModel copyWith({
-    int? id,
-    int? idPessoa,
-    String? nome,
-    String? descricao,
-    String? dataLocacao,
-    String? dataRetorno,
-    String? observacao,
-    String? nomeBanaficiaro,
-    int? idUser,
-  }) {
-    return LocacaoModel(
-      id: id ?? this.id,
-      idPessoa: idPessoa ?? this.idPessoa,
-      nome: nome ?? this.nome,
-      descricao: descricao ?? this.descricao,
-      dataLocacao: dataLocacao ?? this.dataLocacao,
-      dataRetorno: dataRetorno ?? this.dataRetorno,
-      observacao: observacao ?? this.observacao,
-      nomeBanaficiaro: nomeBanaficiaro ?? this.nomeBanaficiaro,
-      idUser: idUser ?? this.idUser,
-    );
-  }
-
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return<String, dynamic>{
       'id': id,
-      'idPessoa': idPessoa,
+      'id_item': idItem,
+      'id_pessoa': idPessoa,
+      'id_user': idUser,
       'nome': nome,
       'descricao': descricao,
-      'dataLocacao': dataLocacao,
-      'dataRetorno': dataRetorno,
+      'data_reserva': dataReserva,
+      'data_locacao': dataLocacao,
+      'data_retorno': dataRetorno,
       'observacao': observacao,
-      'nomeBanaficiaro': nomeBanaficiaro,
-      'idUser': idUser,
+      'nome_beneficiario': nomeBeneficiario,
     };
   }
 
   factory LocacaoModel.fromMap(Map<String, dynamic> map) {
     return LocacaoModel(
-      id: map['id'] != null ? map['id'] as int : null,
-      idPessoa: map['idPessoa'] != null ? map['idPessoa'] as int : null,
-      nome: map['nome'] != null ? map['nome'] as String : null,
-      descricao: map['descricao'] != null ? map['descricao'] as String : null,
-      dataLocacao: map['dataLocacao'] != null ? map['dataLocacao'] as String : null,
-      dataRetorno: map['dataRetorno'] != null ? map['dataRetorno'] as String : null,
-      observacao: map['observacao'] != null ? map['observacao'] as String : null,
-      nomeBanaficiaro: map['nomeBanaficiaro'] != null ? map['nomeBanaficiaro'] as String : null,
-      idUser: map['idUser'] != null ? map['idUser'] as int : null,
+      id: map['id'] ?? 0,
+      idItem: map['id_item'] ?? 0,
+      idPessoa: map['id_pessoa'] ?? 0,
+      idUser: map['id_user'] ?? 0,
+      nome: map['nome'] ?? '',
+      descricao: map['descricao'] ?? '',
+      dataReserva: map['data_reserva'] ?? '',
+      dataRetorno: map['data_retorno'] ?? '',
+      dataLocacao: map['data_locacao'] ?? '',
+      observacao: map['observacao'] ?? '',
+      nomeBeneficiario: map['nome_beneficiario'] ?? '',
     );
   }
 
@@ -81,37 +63,10 @@ class LocacaoModel {
 
   factory LocacaoModel.fromJson(String source) => LocacaoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
+
+
   @override
   String toString() {
-    return 'LocacaoModel(id: $id, idPessoa: $idPessoa, nome: $nome, descricao: $descricao, dataLocacao: $dataLocacao, dataRetorno: $dataRetorno, observacao: $observacao, nomeBanaficiaro: $nomeBanaficiaro, idUser: $idUser)';
+    return 'LocacoaModel(id: $id, idItem: $idItem, idPessoa: $idPessoa, id_user: $idUser, nome: $nome, descricao: $descricao, dataReserva: $dataReserva, dataRetorno: $dataRetorno, dataLocacao: $dataLocacao, observacao: $observacao, nomeBeneficiario: $nomeBeneficiario)';
   }
-
-  @override
-  bool operator ==(covariant LocacaoModel other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.idPessoa == idPessoa &&
-      other.nome == nome &&
-      other.descricao == descricao &&
-      other.dataLocacao == dataLocacao &&
-      other.dataRetorno == dataRetorno &&
-      other.observacao == observacao &&
-      other.nomeBanaficiaro == nomeBanaficiaro &&
-      other.idUser == idUser;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      idPessoa.hashCode ^
-      nome.hashCode ^
-      descricao.hashCode ^
-      dataLocacao.hashCode ^
-      dataRetorno.hashCode ^
-      observacao.hashCode ^
-      nomeBanaficiaro.hashCode ^
-      idUser.hashCode;
-  }
-  }
+}

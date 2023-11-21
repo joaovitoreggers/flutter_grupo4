@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:mobx/mobx.dart';
 import 'package:flutter_projeto/models/locacao_model.dart';
@@ -68,7 +67,7 @@ abstract class LocacaoStoreBase with Store {
         idItem: idItem,
         idPessoa: idPessoa,
         observacao: observacao,
-        nomeBanaficiaro: 'Disponível no cadasro',
+        nomeBeneficiario: 'Disponível no cadasro',
         dataReserva: dataReserva.toString(),
         idUser: userId,
       );

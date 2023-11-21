@@ -1,7 +1,8 @@
+import 'package:http/http.dart' as http;
+import 'package:mobx/mobx.dart';
 import 'package:flutter_projeto/helpers/extensions.dart';
 import 'package:flutter_projeto/models/pessoa_model.dart';
 import 'package:flutter_projeto/repositores/pessoa_repository.dart';
-import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'pessoa_store.g.dart';
 
@@ -242,6 +243,6 @@ abstract class PessoaStoreBase with Store {
     notification = info;
     await Future.delayed(Duration(seconds: 2));
     notification = null;
-    loading=false;
-}
+    loading = false; 
+  }
 }

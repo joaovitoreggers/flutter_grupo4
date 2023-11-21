@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                        height: 60,
                        width: 160,
-                       child: Image.asset('assets/images/rotary.png'),
+                       child: Image.asset('assets/images/rotary.jpg'),
                     ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
